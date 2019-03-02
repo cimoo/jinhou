@@ -1,0 +1,52 @@
+<view class='page'>
+  <include src='/components/common/common'></include>
+  <include src='/components/header/header'></include>
+  <view class='body after-navber'>
+    <view class='info'>
+  
+      <block wx:if='{{share_setting.level ==3}}'>
+        <view class='info-title flex-row'>
+          <navigator class='flex-x-center width-50' openType='redirect' url='/pages/share-team/share-team?status=1'>
+            <view class='info-text {{(status == 1?"active":"")}}'>{{ (share_setting.first_name || "已审核") }}({{first_count}})</view>
+          </navigator>
+          <navigator class='flex-x-center width-50' openType='redirect' url='/pages/share-team/share-team?status=2'>
+            <view class='info-text {{(status == 2?"active":"")}}'>{{ (share_setting.second_name || "待审核") }}({{second_count}})</view>
+          </navigator>
+        </view>
+      </block>
+      <block wx:else></block>
+      <view class='info-content' style='{{(share_setting.level == 1?"padding-top:0":"")}}'>
+        <block wx:for='{{list}}' wx:for-item='item' wx:for-index='index' wx:key='{{item.id}}'>
+          <view class='info-label'>
+            <view class='info-up flex-y-center flex-row'>
+              <view class='info-img flex-grow-0'>
+                <image class='img' src='{{item.avatar_url}}'></image>
+              </view>
+              <view class='info-text flex-grow-1'>
+                <view class='info-name flex-row' style='justify-content:space-between;'>
+                  <view class='flex-grow-0 flex-y-center text-more' style='width:300rpx;display:block'>{{item.nickname}}</view>
+                </view>
+              </view>
+            </view>
+            <view class='info-down flex-y-center'>
+               <view class='flex-grow-0 flex-y-center text-more' style='width:300rpx;display:block'>{{item.num}}</view>
+              </view>
+            </view>
+        </block>
+      </view>
+      <block wx:if='{{no_more}}'>
+        <view class='info-footer flex-row'>
+          <view class='info-before'>
+            <view class='info-border'></view>
+          </view>
+          <view class='info-t'>没有更多了</view>
+          <view class='info-after'>
+            <view class='info-border'> 
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <include src='/components/footer/footer'></include>
+</view>

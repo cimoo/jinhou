@@ -1,0 +1,2 @@
+body { background-color: #fff; }
+.title{ font-size: 13pt; color:#353535; font-weight: bold; }
